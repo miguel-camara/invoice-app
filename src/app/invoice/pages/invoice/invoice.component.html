@@ -1,0 +1,16 @@
+<div class="flex justify-center">
+  <div class="container">
+    <invoice-view [id]="invoice()!.id" [name]="invoice()!.name" />
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div class="col-span-1">
+        <client-view [client]="invoice()!.client" />
+      </div>
+      <div class="col-span-1">
+        <company-view [company]="invoice()!.company" />
+      </div>
+    </div>
+    <list-items [items]="invoice()!.items" (removeEventEmitter)="removeItem($event)" />
+    <total [total]="invoice()?.total ?? 0" />
+    <form-item (addItemEventEmitter)="addItem($event)" />
+  </div>
+</div>

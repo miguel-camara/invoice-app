@@ -1,0 +1,98 @@
+<form [formGroup]="formItem" (ngSubmit)="onSubmit()">
+  <div class="grid grid-cols-2 gap-3">
+    <div class="col-span-full">
+      <fieldset class="fieldset">
+        <legend class="fieldset-legend">Producto</legend>
+        <input
+          type="text"
+          class="input w-full"
+          [class.input-error]="
+            formItem.get('product')?.invalid &&
+            (formItem.get('product')?.dirty || formItem.get('product')?.touched)
+          "
+          name="product"
+          placeholder="Producto"
+          formControlName="product"
+        />
+      </fieldset>
+
+      @if (
+        formItem.get('product')?.invalid &&
+        (formItem.get('product')?.dirty || formItem.get('product')?.touched)
+      ) {
+        @if (formItem.get('product')?.errors!['required']) {
+          <div class="text-sm text-error italic">Nombre del producto es requerido!</div>
+        }
+
+        @if (formItem.get('product')?.errors!['minlength']) {
+          <div class="text-sm text-error italic">
+            Nombre del producto debe de tener al menos 5 caracteres!
+          </div>
+        }
+      }
+    </div>
+    <div class="col-span-1">
+      <fieldset class="fieldset">
+        <legend class="fieldset-legend">Precio</legend>
+        <input
+          class="input w-full"
+          [class.input-error]="
+            formItem.get('price')?.invalid &&
+            (formItem.get('price')?.dirty || formItem.get('price')?.touched)
+          "
+          name="price"
+          type="number"
+          placeholder="Precio"
+          formControlName="price"
+        />
+      </fieldset>
+
+      @if (
+        formItem.get('price')?.invalid &&
+        (formItem.get('price')?.dirty || formItem.get('price')?.touched)
+      ) {
+        @if (formItem.get('price')?.errors!['required']) {
+          <div class="text-sm text-error italic">Precio es requerido!</div>
+        }
+
+        @if (formItem.get('price')?.errors!['min']) {
+          <div class="text-sm text-error italic">Precio debe ser mayor o igual a 10!</div>
+        }
+      }
+    </div>
+    <div class="col-span-1">
+      <fieldset class="fieldset">
+        <legend class="fieldset-legend">Cantidad</legend>
+        <input
+          class="input w-full"
+          [class.input-error]="
+            formItem.get('quantity')?.invalid &&
+            (formItem.get('quantity')?.dirty || formItem.get('quantity')?.touched)
+          "
+          name="quantity"
+          type="number"
+          placeholder="Cantidad"
+          formControlName="quantity"
+        />
+      </fieldset>
+      @if (
+        formItem.get('quantity')?.invalid &&
+        (formItem.get('quantity')?.dirty || formItem.get('quantity')?.touched)
+      ) {
+        @if (formItem.get('quantity')?.errors!['required']) {
+          <div class="text-sm text-error italic">Cantidad es requerida!</div>
+        }
+
+        @if (formItem.get('quantity')?.errors!['min']) {
+          <div class="text-sm text-error italic">Cantidad debe ser mayor o igual a 1!</div>
+        }
+      }
+    </div>
+  </div>
+
+  <div class="flex justify-center">
+    <button class="btn btn-primary m-3" type="submit" [disabled]="formItem.invalid">
+      Nuevo Item
+    </button>
+  </div>
+</form>

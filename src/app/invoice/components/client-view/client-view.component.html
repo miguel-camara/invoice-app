@@ -1,0 +1,23 @@
+<h3 class="text-3xl text-center my-3">Datos del Cliente</h3>
+
+<ul class="list rounded-box shadow-md bg-gray-700/50">
+  <li class="list-row justify-center">
+    <div>
+      <div class="text-xs uppercase font-semibold opacity-60">Nombre</div>
+      <div>{{ client().name }} {{ client().lastname }}</div>
+    </div>
+  </li>
+  <li class="list-row justify-center">
+    <div>
+      <div class="text-xs uppercase font-semibold opacity-60">País / Ciudad</div>
+
+      <div>{{ client().address.country }} / {{ client().address.city }}</div>
+    </div>
+  </li>
+  <li class="list-row">
+    <div>
+      <div class="text-xs uppercase font-semibold opacity-60">Dirección</div>
+      <div>{{ client().address.street }} {{ client().address.number }}</div>
+    </div>
+  </li>
+</ul>
